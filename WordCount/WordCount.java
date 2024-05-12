@@ -5,10 +5,7 @@ import java.io.IOException;
 import java.nio.Buffer;
 import java.util.Scanner;
 
-/**
- * @author: dl
- * @Date: 2024/5/12
- **/
+
 public class WordCount {
     public static void main(String[] args){
         if(args.length != 2) {
