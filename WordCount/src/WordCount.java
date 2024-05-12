@@ -27,7 +27,8 @@ public class WordCount {
              */
             String[ ] words=s.replaceAll("[^a-zA-Z]+"," ").trim( ).split(" ");
 
-            System.out.println("字符数量："+letters.length+"\n单词数量："+words.length);
+            System.out.println("字符数量："+letters.length);
+            System.out.println("\n单词数量："+words.length);
             reader.close();
         }
         catch(IOException exception)

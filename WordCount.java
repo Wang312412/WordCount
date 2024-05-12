@@ -17,11 +17,12 @@ public class WordCount {
             reader.read(letters);
 
 
-            String s=String.valueOf(letters);//char[]转String
+            String s=String.valueOf(letters);
 
             String[ ] words=s.replaceAll("[^a-zA-Z]+"," ").trim( ).split(" ");
 
-            System.out.println("字符数量："+letters.length+"\n单词数量："+words.length);
+            System.out.println("字符数量："+letters.length);
+            System.out.println("单词数量："+words.length);
             reader.close();
         }
         catch(IOException exception)
