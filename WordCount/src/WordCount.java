@@ -1,39 +1,60 @@
-import javax.swing.*;
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.Buffer;
+import java.util.Scanner;
 
+/**
+ * @author: dl
+ * @Date: 2024/5/12
+ **/
 public class WordCount {
-    public static void main(String[] args) {
-        String fileName= JOptionPane.showInputDialog("Please the name of a file");
-
-        try
-        {
-            //创建文件对象和读取对象
-            File in=new File(fileName);
-            FileReader reader=new FileReader(in);
-
-            //读取文本文件到字符数组letters
-            char[] letters=new char[(int)in.length()];
-            reader.read(letters);
-
-            //统计单词数量
-            String s=String.valueOf(letters);//char[]转String
-            /*
-             * 下面几个函数的含义：
-             * replaceAll(String regex, String replacement):用replacement替换所有的regex匹配项
-             * trim():去掉一段String首尾空格
-             * split():根据给定正则来分割字符串
-             */
-            String[ ] words=s.replaceAll("[^a-zA-Z]+"," ").trim( ).split(" ");
-
-            System.out.println("字符数量："+letters.length);
-            System.out.println("\n单词数量："+words.length);
-            reader.close();
+    public static void main(String[] args){
+        if(args.length != 2) {
+            System.out.println("参数有误");
+            System.exit(1);
         }
-        catch(IOException exception)
-        {
-            exception.printStackTrace();
+
+        String a = args[0];
+        String testTxt = args[1];
+
+        int count =0;
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader(testTxt));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        int ch = 0;
+        if(a.equals("-c")){
+            while(true){
+                try {
+                    if ((ch = reader.read()) == -1) break;
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                count++;
+            }
+
+            System.out.println("字符数 =" + count);
+        }else if(a.equals("-w")){
+            while(true){
+                try {
+                    if ((ch = reader.read()) == -1) break;
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                if(Character.isWhitespace((char) ch)){
+                    count++;
+                }
+            }
+
+            count++;
+
+            System.out.println("单词数 =" + count);
+        }else {
+            System.out.println("输入指令有误");
         }
     }
 }
